@@ -54,9 +54,9 @@ public class MainPage {
     @FindBy(how = How.XPATH, using = ".//p[text()='Конструктор']")
     private SelenideElement constructButton;
 
-    //ингредиенты
-    @FindAll({@FindBy(how = How.XPATH, using = ".//ul[@class='BurgerIngredients_ingredients__list__2A-mT']")})
-    private ElementsCollection ingredientsList;
+    //Активный раздел
+    @FindBy(how = How.XPATH, using = ".//div[@class='tab_tab__1SPyG tab_tab_type_current__2BEPc pt-4 pr-10 pb-4 pl-10 noselect']/span")
+    private SelenideElement nameIngredient;
 
     //заголовок Вход
     @FindBy(how = How.XPATH, using = ".//h2[text()='Вход']")
@@ -102,19 +102,9 @@ public class MainPage {
         fillingButton.shouldBe(visible).click();
     }
 
-    @Step("Отображается список булок")
-    public boolean isIngredientsListBunVisible() {
-        return $(ingredientsList.get(0)).isDisplayed();
-    }
-
-    @Step("Отображается список соусов")
-    public boolean isIngredientsListSauceVisible() {
-        return $(ingredientsList.get(1)).isDisplayed();
-    }
-
-    @Step("Отображается список начинок")
-    public boolean isIngredientsFillingVisible() {
-        return $(ingredientsList.get(2)).isDisplayed();
+    @Step("Название активного раздела")
+    public String nameChapterVisible() {
+        return nameIngredient.getText();
     }
 
     @Step("Нажать на Выход")

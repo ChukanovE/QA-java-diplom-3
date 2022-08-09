@@ -45,9 +45,7 @@ public class LoginPage {
 
     @Step("Авторизоваться")
     public void login(String email, String password) {
-//        emailField.click();
         emailField.setValue(email);
-//        passwordField.click();
         passwordField.setValue(password);
         enterButton.click();
         createOrderButton.shouldBe(visible);

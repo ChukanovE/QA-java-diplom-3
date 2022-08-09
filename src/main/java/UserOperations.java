@@ -33,7 +33,7 @@ public class UserOperations {
 
         // отправляем запрос на регистрацию пользователя и десериализуем ответ в переменную response
         UserRegResponse response = given()
-                .spec(Base.getBaseSpec())
+                .spec(BaseConfig.getBaseSpec())
                 .and()
                 .body(inputDataMap)
                 .when()
@@ -66,7 +66,7 @@ public class UserOperations {
             return;
         }
         given()
-                .spec(Base.getBaseSpec())
+                .spec(BaseConfig.getBaseSpec())
                 .auth().oauth2(Tokens.getAccessToken())
                 .when()
                 .delete("auth/user")

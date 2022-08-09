@@ -8,6 +8,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 
 import static com.codeborne.selenide.Condition.visible;
+import static com.codeborne.selenide.Selectors.byXpath;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.page;
 
@@ -87,6 +88,20 @@ public class MainPage {
         personalAccButton.click();
         return page(LoginPage.class);
     }
+
+    @Step("Нажать на определнный раздел")
+    public void clickChapter(String nameChapter) {
+        if (nameChapter == "Булки") {
+            clickFillingsButton();
+            $(byXpath("//span[text() = '" + nameChapter + "']")).shouldBe(visible).click();
+        } else {$(byXpath("//span[text() = '" + nameChapter + "']")).shouldBe(visible).click();}
+    }
+
+    @Step("Название активного раздела соответствует нажатому разделу")
+    public boolean isNameChapterRespondClickChapter(String nameChapter) {
+        return nameChapter.equals(nameIngredient.getText());
+    }
+
     @Step("Нажать на Булки")
     public void clickBunButton() {
         bunButton.shouldBe(visible).click();
